@@ -1,6 +1,12 @@
 = cans
 
-Description goes here.
+Interactive online source browser for Rack applications.
+
+Experimental and unfinished. This gem will probably kill
+you in your sleep if you try to use it right now.
+
+If you complain to me about it, I will probably kill you
+in your sleep.
 
 == Note on Patches/Pull Requests
  
