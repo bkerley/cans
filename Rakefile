@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://github.com/bkerley/cans"
     gem.authors = ["Bryce Kerley"]
     gem.add_development_dependency "shoulda", "~> 2.11.3"
+    gem.add_development_dependency 'rack-test', '~> 0.5.6'
     gem.required_ruby_version = '~> 1.9.2'
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
