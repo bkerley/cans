@@ -5,12 +5,14 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "cans"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Source browser for Rack applications}
+    gem.description = %Q{Interactive on-line source browser for rack applications}
     gem.email = "bkerley@brycekerley.net"
     gem.homepage = "http://github.com/bkerley/cans"
     gem.authors = ["Bryce Kerley"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.required_ruby_version = '~> 1.9.2'
+
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
