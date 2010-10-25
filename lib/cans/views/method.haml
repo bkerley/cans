@@ -1,0 +1,7 @@
+!!! 5
+%html
+  %head
+    %title #{@address.module_name} #{@address.method_name} | Cans
+  %body
+    %h1 #{@address.module_name} #{@address.method_name}
+    %pre=@address.target_method.source_with_doc
