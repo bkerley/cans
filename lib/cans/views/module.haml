@@ -7,7 +7,15 @@
     %p #{@module.name} inherits from:
     %ul
       - @ancestors.sort_by(&:name).each do |a|
-        %li&=a.name
+        %li
+          %a{:href=>"/module/#{a.name.gsub('::','/')}"}
+            &=a.name
+    %h2 Child Modules
+    %ul
+      - @child_modules.each do |c|
+        %li
+          %a{:href=>"/module/#{c.name.gsub('::','/')}"}
+            &=c.name
     %h2 Class/Module Methods
     %ul
       - @class_methods.sort_by(&:to_s).each do |m|
