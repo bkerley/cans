@@ -4,5 +4,8 @@
     %title #{@module.name} #{@method.name} | Cans
   %body
     %h1 #{@module.name} #{@method.name}
-    %p #{@method.name} is defined at #{@method.source_location.map(&:inspect).join(', line ')}
-    %pre=@method.source_with_doc
+    - unless @method.source_location.nil?
+      %p #{@method.name} is defined at #{@method.source_location.map(&:inspect).join(', line ')}
+      %pre=@method.source_with_doc
+    - else
+      %p #{@method.name} is defined in the Ruby source code.
