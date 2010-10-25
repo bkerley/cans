@@ -3,7 +3,9 @@ module Cans
       set :views, File.dirname(__FILE__) + '/views'
 
     get '/' do
-      'ok'
+      @constants = Object.constants
+      @modules = @constants.map{ |c| Object.const_get c}.select{ |c| c.kind_of? Module}.sort_by(&:name)
+      haml :index
     end
 
     get '/module/*' do

@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    %title Cans
+  %body
+    %h1 Known Modules
+    %ul
+      - @modules.each do |m|
+        %li
+          %a{:href=>"/module/#{m.name}"}&= m.name
