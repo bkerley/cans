@@ -33,15 +33,17 @@ module Cans
       return md[1].gsub('/','')
     end
 
+    def target_module
+      eval "::#{module_name}"
+    end
+
     def target_method
-      mod = eval "::#{module_name}"
-      met = case method_kind
-            when :instance
-              mod.instance_method method_name
-            when :module
-              mod.method method_name
-            end
-      return met
+      case method_kind
+      when :instance
+        target_module.instance_method method_name
+      when :module
+        target_module.method method_name
+      end
     end
   end
 end

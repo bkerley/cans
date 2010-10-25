@@ -19,6 +19,10 @@ class TestAddress < Test::Unit::TestCase
       assert_equal 'refreshing', subject.method_name
     end
 
+    should 'find the target_module' do
+      assert_equal Beverage, subject.target_module
+    end
+    
     should 'find the target_method' do
       assert_equal Beverage.instance_method(:refreshing), subject.target_method
     end
