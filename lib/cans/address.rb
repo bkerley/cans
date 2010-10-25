@@ -1,7 +1,7 @@
 module Cans
   class Address
     METHOD_KIND_REGEX = %r{\.(.)}
-    MODULE_NAME_REGEX = %r{^(.+)/\.}
+    MODULE_NAME_REGEX = /^(.+)\/\.|^(.+)$/
     METHOD_NAME_REGEX = %r{\../(.+)$}
 
     def initialize(address_string)
@@ -11,7 +11,7 @@ module Cans
     def module_name
       md = MODULE_NAME_REGEX.match @string
       raise "No module_name found in #{@string.inspect}" unless md
-      return md[1].gsub('/','::')
+      return md.captures.detect{ |m| !(m.nil? || m.empty?) }.gsub('/','::')
     end
 
     def method_kind
