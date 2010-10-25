@@ -1,0 +1,28 @@
+!!! 5
+%html
+  %head
+    %title #{@module.name} | Cans
+  %body
+    %h1 #{@module.name}
+    %p #{@module.name} inherits from:
+    %ul
+      - @ancestors.sort_by(&:name).each do |a|
+        %li&=a.name
+    %h2 Class/Module Methods
+    %ul
+      - @class_methods.sort_by(&:to_s).each do |m|
+        %li
+          %a{:href=>"/method/#{@module.name}/.m/#{m.to_s}"}
+            &=m.to_s
+    %h2 Local Instance Methods
+    %ul
+      - @local_instance_methods.sort_by(&:to_s).each do |m|
+        %li
+          %a{:href=>"/method/#{@module.name}/.i/#{m.to_s}"}
+            &=m.to_s
+    %h2 Inherited Instance Methods
+    %ul
+      - @super_instance_methods.sort_by(&:to_s).each do |m|
+        %li
+          %a{:href=>"/method/#{@module.name}/.i/#{m.to_s}"}
+            &=m.to_s
