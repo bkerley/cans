@@ -3,6 +3,10 @@ require 'test/unit'
 require 'rack/test'
 require 'shoulda'
 
+ENV['RACK_ENV'] = 'test'
+
+require File.join(File.dirname(__FILE__), 'fixtures', 'beverage')
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'cans'

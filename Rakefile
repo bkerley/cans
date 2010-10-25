@@ -10,8 +10,14 @@ begin
     gem.email = "bkerley@brycekerley.net"
     gem.homepage = "http://github.com/bkerley/cans"
     gem.authors = ["Bryce Kerley"]
+
+    gem.add_dependency 'sinatra', '~> 1.1.0'
+    gem.add_dependency 'haml', '~> 3.0.22'
+    gem.add_dependency 'method_extensions', '~> 0.0.8'
+
     gem.add_development_dependency "shoulda", "~> 2.11.3"
     gem.add_development_dependency 'rack-test', '~> 0.5.6'
+
     gem.required_ruby_version = '~> 1.9.2'
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
