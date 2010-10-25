@@ -41,6 +41,20 @@ class TestApplication < Test::Unit::TestCase
     end
   end
 
+  context 'get to /module/Beverage' do
+    setup do
+      get '/module/Beverage'
+    end
+
+    should 'be ok' do
+      assert last_response.ok?
+    end
+
+    should 'include the "refreshing" instance method' do
+      assert_match /refreshing/, last_response.body
+    end
+  end
+
   def app
     Cans::Application
   end
