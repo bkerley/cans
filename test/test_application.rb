@@ -25,6 +25,14 @@ class TestApplication < Test::Unit::TestCase
     should 'be ok' do
       assert last_response.ok?
     end
+
+    should 'list some known modules' do
+      expected_constants = %w{ Cans Beverage TestApplication }
+
+      expected_constants.each do |c|
+        assert_match c, last_response.body
+      end
+    end
   end
 
   context 'get to /method/Beverage/.i/refreshing' do
