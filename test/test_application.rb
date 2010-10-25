@@ -37,7 +37,7 @@ class TestApplication < Test::Unit::TestCase
     end
 
     should 'include the source' do
-      assert last_response.body.include?('very')
+      assert_match /quite/, last_response.body
     end
   end
 
