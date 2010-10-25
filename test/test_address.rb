@@ -27,4 +27,19 @@ class TestAddress < Test::Unit::TestCase
       assert_equal Beverage.instance_method(:refreshing), subject.target_method
     end
   end
+
+  context 'an Address to the Beverage class' do
+    setup do
+      @address = Cans::Address.new 'Beverage'
+    end
+    subject { @address }
+
+    should 'decode the module_name' do
+      assert_equal 'Beverage', subject.module_name
+    end
+
+    should 'find the target_module' do
+      assert_equal Beverage, subject.target_module
+    end
+  end
 end
