@@ -1,7 +1,8 @@
 !!! 5
 %html
   %head
-    %title #{@address.module_name} #{@address.method_name} | Cans
+    %title #{@module.name} #{@method.name} | Cans
   %body
-    %h1 #{@address.module_name} #{@address.method_name}
-    %pre=@address.target_method.source_with_doc
+    %h1 #{@module.name} #{@method.name}
+    %p #{@method.name} is defined at #{@method.source_location.map(&:inspect).join(', line ')}
+    %pre=@method.source_with_doc

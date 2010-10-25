@@ -22,6 +22,8 @@ module Cans
 
     get '/method/*' do
       @address = Address.new(params[:splat].first)
+      @module = @address.target_module
+      @method = @address.target_method
       haml :method
     end
   end
