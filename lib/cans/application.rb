@@ -29,5 +29,12 @@ module Cans
       @method = @address.target_method
       haml :method
     end
+
+    helpers do
+      def link(destination, content)
+        href = request.env['rack.mount.prefix'] + destination
+        "<a href='#{href}'>#{content}</a>"
+      end
+    end
   end
 end
