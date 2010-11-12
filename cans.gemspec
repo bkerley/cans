@@ -66,14 +66,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<method_extensions>, ["~> 0.0.8"])
       s.add_development_dependency(%q<shoulda>, ["~> 2.11.3"])
       s.add_development_dependency(%q<rack-test>, ["~> 0.5.6"])
-      s.add_development_dependency(%q<mocha>, ["~> 0.9.9"])
+      s.add_development_dependency(%q<coffee-script>, ["~> 1.1.0"])
     else
       s.add_dependency(%q<sinatra>, ["~> 1.1.0"])
       s.add_dependency(%q<haml>, ["~> 3.0.22"])
       s.add_dependency(%q<method_extensions>, ["~> 0.0.8"])
       s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
       s.add_dependency(%q<rack-test>, ["~> 0.5.6"])
-      s.add_dependency(%q<mocha>, ["~> 0.9.9"])
+      s.add_dependency(%q<coffee-script>, ["~> 1.1.0"])
     end
   else
     s.add_dependency(%q<sinatra>, ["~> 1.1.0"])
@@ -81,7 +81,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<method_extensions>, ["~> 0.0.8"])
     s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
     s.add_dependency(%q<rack-test>, ["~> 0.5.6"])
-    s.add_dependency(%q<mocha>, ["~> 0.9.9"])
+    s.add_dependency(%q<coffee-script>, ["~> 1.1.0"])
   end
 end
 

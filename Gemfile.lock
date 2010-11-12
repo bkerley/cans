@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cans (0.1.1)
+    cans (0.1.2)
       haml (~> 3.0.22)
       method_extensions (~> 0.0.8)
       sinatra (~> 1.1.0)
@@ -10,15 +10,13 @@ GEM
   remote: http://rubygems.org/
   specs:
     coderay (0.9.3)
+    coffee-script (1.1.0)
     haml (3.0.23)
     method_extensions (0.0.8)
       coderay (= 0.9.3)
-    mocha (0.9.9)
-      rake
     rack (1.2.1)
     rack-test (0.5.6)
       rack (>= 1.0)
-    rake (0.8.7)
     shoulda (2.11.3)
     sinatra (1.1.0)
       rack (~> 1.1)
@@ -30,9 +28,9 @@ PLATFORMS
 
 DEPENDENCIES
   cans!
+  coffee-script (~> 1.1.0)
   haml (~> 3.0.22)
   method_extensions (~> 0.0.8)
-  mocha (~> 0.9.9)
   rack-test (~> 0.5.6)
   shoulda (~> 2.11.3)
   sinatra (~> 1.1.0)
