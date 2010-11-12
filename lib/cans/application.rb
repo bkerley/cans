@@ -31,6 +31,11 @@ module Cans
       haml :method
     end
 
+    before do
+      @historian ||= Historian.new
+      @historian.delve
+    end
+
     helpers do
       def link(destination, content)
         prefix = request.env['rack.mount.prefix'] || ''

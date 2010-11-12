@@ -2,7 +2,7 @@
   require g
 end
 
-%w{ address application }.each do |f|
+%w{ address application historian }.each do |f|
   require File.join(File.dirname(__FILE__), 'cans', f)
 end
 
