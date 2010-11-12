@@ -1,6 +1,7 @@
 module Cans
   class Application < Sinatra::Base
     set :views, File.dirname(__FILE__) + '/views'
+    set :public, File.dirname(__FILE__) + '/static'
 
     get '/' do
       @constants = Object.constants
