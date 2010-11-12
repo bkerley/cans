@@ -32,7 +32,8 @@ module Cans
 
     helpers do
       def link(destination, content)
-        href = request.env['rack.mount.prefix'] + destination
+        prefix = request.env['rack.mount.prefix'] || ''
+        href = prefix + destination
         "<a href='#{href}'>#{content}</a>"
       end
     end

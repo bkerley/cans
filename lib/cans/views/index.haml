@@ -7,4 +7,4 @@
     %ul
       - @modules.each do |m|
         %li
-          %a{:href=>"/module/#{m.name}"}&= m.name
+          =link "/module/#{m.name}", m.name

@@ -6,31 +6,29 @@
     %h1 #{@module.name}
     %p #{@module.name} inherits from:
     %ul
-      - @ancestors.sort_by(&:name).each do |a|
+      - @ancestors.sort_by(&:inspect).each do |a|
         %li
-          %a{:href=>"/module/#{a.name.gsub('::','/')}"}
-            &=a.name
+          - if a.name
+            =link "/module/#{a.name.gsub('::','/')}", a.name
+          - else
+            &= a.inspect
     %h2 Child Modules
     %ul
       - @child_modules.each do |c|
         %li
-          %a{:href=>"/module/#{c.name.gsub('::','/')}"}
-            &=c.name
+          =link "/module/#{c.name.gsub('::','/')}", c.name
     %h2 Class/Module Methods
     %ul
       - @class_methods.sort_by(&:to_s).each do |m|
         %li
-          %a{:href=>"/method/#{@module.name}/.m/#{m.to_s}"}
-            &=m.to_s
+          =link "/method/#{@module.name}/.m/#{m.to_s}", m.to_s
     %h2 Local Instance Methods
     %ul
       - @local_instance_methods.sort_by(&:to_s).each do |m|
         %li
-          %a{:href=>"/method/#{@module.name}/.i/#{m.to_s}"}
-            &=m.to_s
+          =link "/method/#{@module.name}/.i/#{m.to_s}", m.to_s
     %h2 Inherited Instance Methods
     %ul
       - @super_instance_methods.sort_by(&:to_s).each do |m|
         %li
-          %a{:href=>"/method/#{@module.name}/.i/#{m.to_s}"}
-            &=m.to_s
+          =link "/method/#{@module.name}/.i/#{m.to_s}", m.to_s
