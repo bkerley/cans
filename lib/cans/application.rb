@@ -31,8 +31,12 @@ module Cans
       haml :method
     end
 
+    def initialize
+      @historian = Historian.new
+      super
+    end
+
     before do
-      @historian ||= Historian.new
       @historian.delve
     end
 
