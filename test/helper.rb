@@ -2,6 +2,7 @@ require 'rubygems'
 require 'test/unit'
 require 'rack/test'
 require 'shoulda'
+require 'mocha'
 
 ENV['RACK_ENV'] = 'test'
 
