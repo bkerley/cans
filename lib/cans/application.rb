@@ -10,6 +10,21 @@ module Cans
       haml :index
     end
 
+    get '/browser' do
+      haml :frameset
+    end
+
+    post '/browser/r' do
+      @constants = Object.constants
+      @modules = @constants.map{ |c| Object.const_get c}.select{ |c| c.kind_of? Module}.map(&:name).sort
+      content_type :json
+      to_json({ :modules=>@modules })
+    end
+
+    get '/application.js' do
+      coffee :application
+    end
+
     get '/module/*' do
       @address = Address.new(params[:splat].first)
       @module = @address.target_module
@@ -47,6 +62,10 @@ module Cans
         prefix = request.env['rack.mount.prefix'] || ''
         href = prefix + destination
         "<a href='#{href}'>#{content}</a>"
+      end
+
+      def to_json(hash)
+        JSON.generate hash
       end
     end
   end
