@@ -1,6 +1,6 @@
 module Cans
   class Application < Sinatra::Base
-      set :views, File.dirname(__FILE__) + '/views'
+    set :views, File.dirname(__FILE__) + '/views'
 
     get '/' do
       @constants = Object.constants
@@ -20,6 +20,7 @@ module Cans
 
       @ancestors = @module.ancestors
       @child_modules = @module.constants.map{ |c| @module.const_get c}.select{ |c| c.kind_of? Module}.sort_by(&:name)
+
       haml :module
     end
 
