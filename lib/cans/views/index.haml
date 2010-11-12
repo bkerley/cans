@@ -8,3 +8,7 @@
       - @modules.each do |m|
         %li
           =link "/module/#{m.name}", m.name
+    %h1 History
+    %ul
+      - @history.each do |f|
+        %li&= f

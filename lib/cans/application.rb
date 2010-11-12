@@ -5,6 +5,7 @@ module Cans
     get '/' do
       @constants = Object.constants
       @modules = @constants.map{ |c| Object.const_get c}.select{ |c| c.kind_of? Module}.sort_by(&:name)
+      @history = @historian.history
       haml :index
     end
 
