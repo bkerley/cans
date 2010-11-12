@@ -17,6 +17,7 @@ begin
 
     gem.add_development_dependency "shoulda", "~> 2.11.3"
     gem.add_development_dependency 'rack-test', '~> 0.5.6'
+    gem.add_development_dependency 'mocha', '~> 0.9.9'
 
     gem.required_ruby_version = '~> 1.9.2'
 
