@@ -21,6 +21,27 @@ module Cans
       to_json({ :modules=>@modules })
     end
 
+    post '/browser/m/*' do
+      @address = Address.new(params[:splat].first)
+      @module = @address.target_module
+
+      @local_instance_methods = @module.instance_methods false
+      @all_instance_methods = @module.instance_methods true
+      @super_instance_methods = @all_instance_methods - @local_instance_methods
+
+      @class_methods = @module.methods.map(&:to_s).sort
+
+      @ancestors = @module.ancestors
+      @child_modules = @module.constants.map{ |c| @module.const_get c}.select{ |c| c.kind_of? Module}.map(&:name).sort
+
+      content_type :json
+      to_json({ :child_modules=>@child_modules,
+                :class_methods=>@class_methods,
+                :local_instance_methods=>@local_instance_methods.map(&:to_s).sort,
+                :inherited_instance_methods=>@super_instance_methods.map(&:to_s).sort
+              })
+    end
+
     get '/application.js' do
       coffee :application
     end
@@ -35,8 +56,8 @@ module Cans
 
       @class_methods = @module.methods
 
-      @ancestors = @module.ancestors
-      @child_modules = @module.constants.map{ |c| @module.const_get c}.select{ |c| c.kind_of? Module}.sort_by(&:name)
+      @ancestors = @module.ancestors.map(&:name).sort
+      @child_modules = @module.constants.map{ |c| @module.const_get c}.select{ |c| c.kind_of? Module}.map(&:name).sort
 
       haml :module
     end
