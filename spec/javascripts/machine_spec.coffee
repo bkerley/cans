@@ -10,3 +10,20 @@ describe 'Machine', ->
     spyOn jQuery, 'ajax'
     machine = new Machine()
     expect(jQuery.ajax).toHaveBeenCalled()
+
+  describe 'instance', ->
+
+    machine = null
+
+    beforeEach ->
+      spyOn jQuery, 'ajax'
+      machine = new Machine();
+
+    describe 'when receiving module data', ->
+      beforeEach ->
+
+      it 'should create empty module instances for each datum', ->
+        machine.consume(
+          modules: ['Alpha', 'Bravo']
+        )
+        expect(machine.modules).toEqual([new Module('Alpha'), new Module('Bravo')])
