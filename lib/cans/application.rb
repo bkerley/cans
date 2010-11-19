@@ -21,7 +21,7 @@ module Cans
       to_json({ :modules=>@modules })
     end
 
-    post '/browser/m/*' do
+    post '/browser/c/*' do
       @address = Address.new(params[:splat].first)
       @module = @address.target_module
 
@@ -40,6 +40,14 @@ module Cans
                 :local_instance_methods=>@local_instance_methods.map(&:to_s).sort,
                 :inherited_instance_methods=>@super_instance_methods.map(&:to_s).sort
               })
+    end
+
+    post '/browser/m/*' do
+      @address = Address.new(params[:splat].first)
+      @module = @address.target_module
+      @method = @address.target_method
+
+      to_json({ :source=>@method.source_with_doc })
     end
 
     get '/application.js' do
