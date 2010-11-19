@@ -14,7 +14,7 @@ module Cans
       haml :frameset
     end
 
-    post '/browser/image/:id' do
+    post '/browser/image' do
       @constants = Object.constants
       @modules = @constants.map{ |c| Object.const_get c}.select{ |c| c.kind_of? Module}.map(&:name).sort
       content_type :json
@@ -48,10 +48,6 @@ module Cans
       @method = @address.target_method
 
       to_json({ :source=>@method.source_with_doc })
-    end
-
-    get '/application.js' do
-      coffee :application
     end
 
     get '/module/*' do
