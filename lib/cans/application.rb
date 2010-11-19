@@ -14,14 +14,14 @@ module Cans
       haml :frameset
     end
 
-    post '/browser/r' do
+    post '/browser/image/:id' do
       @constants = Object.constants
       @modules = @constants.map{ |c| Object.const_get c}.select{ |c| c.kind_of? Module}.map(&:name).sort
       content_type :json
       to_json({ :modules=>@modules })
     end
 
-    post '/browser/c/*' do
+    post '/browser/class/*' do
       @address = Address.new(params[:splat].first)
       @module = @address.target_module
 
@@ -42,7 +42,7 @@ module Cans
               })
     end
 
-    post '/browser/m/*' do
+    post '/browser/method/*' do
       @address = Address.new(params[:splat].first)
       @module = @address.target_module
       @method = @address.target_method
