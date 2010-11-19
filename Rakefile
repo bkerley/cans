@@ -18,7 +18,7 @@ begin
     gem.add_development_dependency "shoulda", "~> 2.11.3"
     gem.add_development_dependency 'rack-test', '~> 0.5.6'
     gem.add_development_dependency 'coffee-script', '~> 1.1.0'
-    gem.add_development_dependency 'jasmine', '~> 1.0.1'
+    gem.add_development_dependency 'evergreen', '~> 0.4.0'
 
     gem.required_ruby_version = '~> 1.9.2'
 
@@ -63,5 +63,9 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-require 'jasmine'
-load 'jasmine/tasks/jasmine.rake'
+desc 'Compile the coffeescript files to javascript'
+task :coffeescript => 'lib/cans/static/application.js'
+
+file 'lib/cans/static/application.js' => 'lib/cans/views/application.coffee' do
+  system 'coffee -co lib/cans/static lib/cans/views/application.coffee'
+end

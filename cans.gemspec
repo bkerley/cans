@@ -41,6 +41,9 @@ Gem::Specification.new do |s|
      "lib/cans/views/index.haml",
      "lib/cans/views/method.haml",
      "lib/cans/views/module.haml",
+     "spec/javascripts/helpers/SpecHelper.js",
+     "spec/javascripts/support/jasmine.yml",
+     "spec/javascripts/support/jasmine_runner.rb",
      "test/fixtures/beverage.rb",
      "test/helper.rb",
      "test/test_address.rb",
@@ -55,7 +58,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Source browser for Rack applications}
   s.test_files = [
-    "test/fixtures/beverage.rb",
+    "spec/javascripts/support/jasmine_runner.rb",
+     "test/fixtures/beverage.rb",
      "test/helper.rb",
      "test/test_address.rb",
      "test/test_application.rb",
@@ -74,7 +78,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<shoulda>, ["~> 2.11.3"])
       s.add_development_dependency(%q<rack-test>, ["~> 0.5.6"])
       s.add_development_dependency(%q<coffee-script>, ["~> 1.1.0"])
-      s.add_development_dependency(%q<jasmine>, ["~> 1.0.1"])
+      s.add_development_dependency(%q<evergreen>, ["~> 0.4.0"])
     else
       s.add_dependency(%q<sinatra>, ["~> 1.1.0"])
       s.add_dependency(%q<haml>, ["~> 3.0.22"])
@@ -82,7 +86,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
       s.add_dependency(%q<rack-test>, ["~> 0.5.6"])
       s.add_dependency(%q<coffee-script>, ["~> 1.1.0"])
-      s.add_dependency(%q<jasmine>, ["~> 1.0.1"])
+      s.add_dependency(%q<evergreen>, ["~> 0.4.0"])
     end
   else
     s.add_dependency(%q<sinatra>, ["~> 1.1.0"])
@@ -91,7 +95,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
     s.add_dependency(%q<rack-test>, ["~> 0.5.6"])
     s.add_dependency(%q<coffee-script>, ["~> 1.1.0"])
-    s.add_dependency(%q<jasmine>, ["~> 1.0.1"])
+    s.add_dependency(%q<evergreen>, ["~> 0.4.0"])
   end
 end
 
