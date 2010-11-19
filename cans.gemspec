@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bryce Kerley"]
-  s.date = %q{2010-11-12}
+  s.date = %q{2010-11-19}
   s.description = %q{Interactive on-line source browser for rack applications}
   s.email = %q{bkerley@brycekerley.net}
   s.extra_rdoc_files = [
@@ -31,6 +31,13 @@ Gem::Specification.new do |s|
      "lib/cans/address.rb",
      "lib/cans/application.rb",
      "lib/cans/historian.rb",
+     "lib/cans/static/backbone-min.js",
+     "lib/cans/static/frameset.css",
+     "lib/cans/static/jquery-1.4.4.min.js",
+     "lib/cans/static/json2.js",
+     "lib/cans/static/underscore-min.js",
+     "lib/cans/views/application.coffee",
+     "lib/cans/views/frameset.haml",
      "lib/cans/views/index.haml",
      "lib/cans/views/method.haml",
      "lib/cans/views/module.haml",
@@ -67,6 +74,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<shoulda>, ["~> 2.11.3"])
       s.add_development_dependency(%q<rack-test>, ["~> 0.5.6"])
       s.add_development_dependency(%q<coffee-script>, ["~> 1.1.0"])
+      s.add_development_dependency(%q<jasmine>, ["~> 1.0.1"])
     else
       s.add_dependency(%q<sinatra>, ["~> 1.1.0"])
       s.add_dependency(%q<haml>, ["~> 3.0.22"])
@@ -74,6 +82,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
       s.add_dependency(%q<rack-test>, ["~> 0.5.6"])
       s.add_dependency(%q<coffee-script>, ["~> 1.1.0"])
+      s.add_dependency(%q<jasmine>, ["~> 1.0.1"])
     end
   else
     s.add_dependency(%q<sinatra>, ["~> 1.1.0"])
@@ -82,6 +91,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
     s.add_dependency(%q<rack-test>, ["~> 0.5.6"])
     s.add_dependency(%q<coffee-script>, ["~> 1.1.0"])
+    s.add_dependency(%q<jasmine>, ["~> 1.0.1"])
   end
 end
 

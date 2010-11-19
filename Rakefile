@@ -18,6 +18,7 @@ begin
     gem.add_development_dependency "shoulda", "~> 2.11.3"
     gem.add_development_dependency 'rack-test', '~> 0.5.6'
     gem.add_development_dependency 'coffee-script', '~> 1.1.0'
+    gem.add_development_dependency 'jasmine', '~> 1.0.1'
 
     gem.required_ruby_version = '~> 1.9.2'
 
@@ -61,3 +62,6 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'
