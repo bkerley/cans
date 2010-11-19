@@ -19,6 +19,12 @@ Start your Rails app, and use it a bit.  Understand that cans will add an after_
 
 Then, visit the cans mountpoint and browse around.
 
+== Testing
+
+Unit tests are in the "test/unit" directory, using "shoulda" from ThoughtBot.  Run them with "rake test".
+
+Jasmine tests for the fancy browser are in the "spec/javascripts" directory.  Run them with "rake jasmine:ci".
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
