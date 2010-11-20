@@ -6,7 +6,7 @@ require '/application.js'
 
 describe 'Machine', ->
 
-  it 'should Ajax fetch a list of modules when constructed', ->
+  it 'should Ajax fetch when constructed', ->
     spyOn jQuery, 'ajax'
     machine = new Machine()
     expect(jQuery.ajax).toHaveBeenCalled()
