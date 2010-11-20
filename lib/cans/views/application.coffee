@@ -16,6 +16,8 @@ jQuery ->
   # the top-level view of the Ruby VM image
   class window.Machine
     constructor: ->
+      self.load
+    load: ->
       Ajax '/image', (data) =>
         this.consume data
     consume: (returned) ->
@@ -26,3 +28,19 @@ jQuery ->
 
   class window.Module
     constructor: (@name) ->
+    load: ->
+      Ajax "/module/#{@name}", (data) =>
+        this.consume data
+    consume: (returned) ->
+      @childModules = _.map returned.child_modules, (m) => new Module(m)
+      @classMethods = _.map returned.class_methods, (m) => new ClassMethod(this, m)
+      @localInstanceMethods = _.map returned.local_instance_methods, (m) => new InstanceMethod(this, m)
+      @inheritedInstanceMethods = _.map returned.inherited_instance_methods, (m) => new InstanceMethod(this, m)
+
+  class window.Method
+
+  class window.InstanceMethod
+    constructor: (@module, @name) ->
+
+  class window.ClassMethod
+    constructor: (@module, @name) ->
