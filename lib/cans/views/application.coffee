@@ -16,7 +16,7 @@ jQuery ->
   # the top-level view of the Ruby VM image
   class window.Machine
     constructor: ->
-      self.load
+      this.load()
     load: ->
       Ajax '/image', (data) =>
         this.consume data
