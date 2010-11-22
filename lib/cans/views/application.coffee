@@ -38,9 +38,11 @@ jQuery ->
       @inheritedInstanceMethods = _.map returned.inherited_instance_methods, (m) => new InstanceMethod(this, m)
 
   class window.Method
-
-  class window.InstanceMethod
     constructor: (@module, @name) ->
+    load: (flavor) ->
+      Ajax "/#{@module.name}/.#{flavor}/#{@name}", (data) =>
+        this.consume data
 
-  class window.ClassMethod
-    constructor: (@module, @name) ->
+  class window.InstanceMethod extends window.Method
+
+  class window.ClassMethod extends window.Method
