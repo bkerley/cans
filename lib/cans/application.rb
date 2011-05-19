@@ -61,7 +61,7 @@ module Cans
       @class_methods = @module.methods
 
       @ancestors = @module.ancestors.sort_by(&:name)
-      @child_modules = @module.constants.map{ |c| @module.const_get c}.select{ |c| c.kind_of? Module}.map(&:name).sort
+      @child_modules = @module.constants.map{ |c| @module.const_get c}.select{ |c| c.kind_of? Module}.sort_by(&:name)
 
       haml :module
     end

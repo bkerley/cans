@@ -5,9 +5,19 @@
     %link(rel='stylesheet' href='frameset.css' type='text/css' media='screen')
   %body
     %ul#columns
+      %li
+        %ul#module_list
+        %ul#method_list
     #content
     %script(src='json2.js' type='text/javascript')
     %script(src='jquery-1.4.4.min.js' type='text/javascript')
     %script(src='underscore-min.js' type='text/javascript')
     %script(src='backbone-min.js' type='text/javascript')
     %script(src='application.js' type='text/javascript')
+    %script#module_template(type='text/template')
+      %li.module
+        %a{:href=>''}!= '<%= name %>'
+    %script#method_template(type='text/template')
+      %li.method
+        %a{:href=>''}!= '<%= name %>'
+   
