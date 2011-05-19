@@ -1,33 +1,13 @@
-require 'rubygems'
-require 'rake'
-
+require 'bundler'
 begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "cans"
-    gem.summary = %Q{Source browser for Rack applications}
-    gem.description = %Q{Interactive on-line source browser for rack applications}
-    gem.email = "bkerley@brycekerley.net"
-    gem.homepage = "http://github.com/bkerley/cans"
-    gem.authors = ["Bryce Kerley"]
-
-    gem.add_dependency 'sinatra', '~> 1.1.0'
-    gem.add_dependency 'haml', '~> 3.0.22'
-    gem.add_dependency 'method_extensions', '~> 0.0.8'
-
-    gem.add_development_dependency "shoulda", "~> 2.11.3"
-    gem.add_development_dependency 'rack-test', '~> 0.5.6'
-    gem.add_development_dependency 'coffee-script', '~> 1.1.0'
-    gem.add_development_dependency 'evergreen', '~> 0.4.0'
-
-    gem.required_ruby_version = '~> 1.9.2'
-
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+  Bundler.setup(:default, :development)
+  Bundler::GemHelper.install_tasks
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
 end
+require 'rake'
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
