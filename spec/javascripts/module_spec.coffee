@@ -15,6 +15,11 @@ describe 'Module', ->
 
     beforeEach ->
       module = new Module('SampleModule')
+      view =
+        trigger: (name) ->
+          null
+      spyOn view, 'trigger'
+      module.view = view
 
     it 'should Ajax fetch when asked to load', ->
       spyOn jQuery, 'ajax'
@@ -33,3 +38,13 @@ describe 'Module', ->
       expect(module.localInstanceMethods).toEqual([new InstanceMethod(module, 'be_a_sample')])
       expect(module.inheritedInstanceMethods).toEqual([new InstanceMethod(module, 'be_an_object')])
     describe 'consuming Ajax data', ->
+      beforeEach ->
+        data =
+          child_modules: ['SampleModule::Client']
+          class_methods: ['locate_a_client']
+          local_instance_methods: ['be_a_sample']
+          inherited_instance_methods: ['be_an_object']
+        module.consume(data)
+
+      it 'should notify the view that it loaded', ->
+        expect(module.view.trigger).toHaveBeenCalledWith('loaded')

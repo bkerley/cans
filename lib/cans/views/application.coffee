@@ -29,7 +29,7 @@ jQuery ->
     constructor: (@name) ->
       @view = null
     load: ->
-      Ajax "/module/#{@name}", (data) =>
+      Ajax "/class/#{@name}", (data) =>
         this.consume data
     consume: (returned) ->
       @childModules = _.map returned.child_modules, (m) => new Module(m)
@@ -50,22 +50,11 @@ jQuery ->
 
   class window.ClassMethod extends window.Method
 
-  window.MachineView =
-    start: ->
-      _.extend(this, Backbone.Events);
-      this.bind 'loaded', this.drawModules
-      @model = new window.Machine(this)
-    drawModules: ->
-      _(@model.modules).each (m)->
-        view = new ModuleView({model: m})
-        $('#module_list').append(view.render().el)
-
-
   window.ModuleView = Backbone.View.extend
     tagName: 'li'
     template: _.template($('#module_template').html())
     events:
-      'click a': 'loadMethods'
+      'click': 'loadMethods'
       'loaded': 'drawMethods'
     initialize: ->
       this.model.view = this
@@ -78,5 +67,15 @@ jQuery ->
       rendered = this.template(this.model.toJSON())
       $(this.el).html(rendered)
       return this
+
+  window.MachineView =
+    start: ->
+      _.extend(this, Backbone.Events);
+      this.bind 'loaded', this.drawModules
+      @model = new window.Machine(this)
+    drawModules: ->
+      _(@model.modules).each (m)->
+        view = new ModuleView({model: m})
+        $('#module_list').append(view.render().el)
 
   window.MachineView.start()
