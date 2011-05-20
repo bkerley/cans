@@ -15,7 +15,7 @@ jQuery ->
 
   # the top-level view of the Ruby VM image
   class window.Machine
-    constructor: (@machineView) ->
+    constructor: () ->
       this.load()
     load: ->
       Ajax '/image', (data) =>
@@ -23,7 +23,7 @@ jQuery ->
     consume: (returned) ->
       @modules = _.map returned.modules, (m) ->
         new Module(m)
-      @machineView.trigger 'loaded'
+      @view.trigger 'loaded'
 
   class window.Module
     constructor: (@name) ->
@@ -55,27 +55,26 @@ jQuery ->
     template: _.template($('#module_template').html())
     events:
       'click': 'loadMethods'
-      'loaded': 'drawMethods'
     initialize: ->
       this.model.view = this
+      this.bind 'loaded', this.drawMethods
     loadMethods: ->
       this.model.load()
     drawMethods: ->
-      this.model.localInstanceMethods.each (m) ->
+      _(this.model.localInstanceMethods).each (m) ->
         $('#method_list').append m.name
     render: ->
       rendered = this.template(this.model.toJSON())
       $(this.el).html(rendered)
       return this
 
-  window.MachineView =
-    start: ->
-      _.extend(this, Backbone.Events);
+  window.MachineView = Backbone.View.extend
+    initialize: ->
+      @model.view = this
       this.bind 'loaded', this.drawModules
-      @model = new window.Machine(this)
     drawModules: ->
       _(@model.modules).each (m)->
         view = new ModuleView({model: m})
         $('#module_list').append(view.render().el)
 
-  window.MachineView.start()
+  window.App = new window.MachineView({model: new window.Machine})

@@ -15,7 +15,8 @@ describe 'Machine', ->
         trigger: (name) ->
           null
       spyOn view, 'trigger'
-      machine = new Machine(view);
+      machine = new Machine()
+      machine.view = view
 
     describe 'when receiving module data', ->
       beforeEach ->
@@ -27,4 +28,4 @@ describe 'Machine', ->
         expect(machine.modules).toEqual([new Module('Alpha'), new Module('Bravo')])
 
       it 'should notify the view when loaded', ->
-        expect(machine.machineView.trigger).toHaveBeenCalledWith('loaded')
+        expect(machine.view.trigger).toHaveBeenCalledWith('loaded')
