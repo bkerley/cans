@@ -43,12 +43,52 @@ jQuery ->
   class window.Method
     constructor: (@module, @name) ->
     load: (flavor) ->
-      Ajax "/#{@module.name}/.#{flavor}/#{@name}", (data) =>
+      Ajax "/method/#{@module.name}/.#{@flavor}/#{@name}", (data) =>
         this.consume data
+    consume: (returned) ->
+      @source = returned.source
+      this.view.trigger 'loaded'
+    toJSON: ->
+      module: @module.toJSON()
+      name: @name
+      source: @source
+      flavor: @flavor
+      flavorSymbol: @flavorSymbol
 
   class window.InstanceMethod extends window.Method
+    flavor: 'i'
+    flavorSymbol: '#'
 
   class window.ClassMethod extends window.Method
+    flavor: 'm'
+    flavorSymbol: '::'
+
+  window.SourceView = Backbone.View.extend
+    tagName: 'div'
+    template: _.template($('#source_template').html())
+    render: ->
+      rendered = @template(@model.toJSON())
+      $(@el).html(rendered)
+      return this
+
+  window.MethodView = Backbone.View.extend
+    tagName: 'li'
+    template: _.template($('#method_template').html())
+    events:
+      'click': 'loadSource'
+    initialize: ->
+      @model.view = this
+      this.bind 'loaded', this.drawSource
+    loadSource: ->
+      $('#content').html('')
+      @model.load()
+    drawSource: ->
+      sourceView = new SourceView({model: @model})
+      $('#content').html(sourceView.render().el)
+    render: ->
+      rendered = this.template(this.model.toJSON())
+      $(this.el).html(rendered)
+      return this
 
   window.ModuleView = Backbone.View.extend
     tagName: 'li'
@@ -56,13 +96,20 @@ jQuery ->
     events:
       'click': 'loadMethods'
     initialize: ->
-      this.model.view = this
+      @model.view = this
       this.bind 'loaded', this.drawMethods
     loadMethods: ->
-      this.model.load()
+      $('#class_method_list').html('')
+      $('#instance_method_list').html('')
+      $('#content').html('')
+      @model.load()
     drawMethods: ->
+      _(this.model.classMethods).each (m) ->
+        view = new MethodView({model: m})
+        $('#class_method_list').append(view.render().el)
       _(this.model.localInstanceMethods).each (m) ->
-        $('#method_list').append m.name
+        view = new MethodView({model: m})
+        $('#instance_method_list').append(view.render().el)
     render: ->
       rendered = this.template(this.model.toJSON())
       $(this.el).html(rendered)

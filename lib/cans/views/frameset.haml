@@ -7,7 +7,12 @@
     %ul#columns
       %li
         %ul#module_list
-        %ul#method_list
+      %li
+        %h1 Class Methods
+        %ul#class_method_list
+      %li
+        %h1 Instance Methods
+        %ul#instance_method_list
     #content
     %script{:src=>'json2.js', :type=>'text/javascript'}
     %script{:src=>'jquery-1.4.4.min.js', :type=>'text/javascript'}
@@ -18,4 +23,7 @@
       <%= name %>
     %script#method_template(type='text/template')
       <%= name %>
+    %script#source_template(type='text/template')
+      %h1 <%= module.name %><%= flavorSymbol %><%= name %>
+      %pre <%= source %>
    
