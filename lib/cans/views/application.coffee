@@ -85,6 +85,7 @@ jQuery ->
     drawSource: ->
       sourceView = new SourceView({model: @model})
       $('#content').html(sourceView.render().el)
+      SyntaxHighlighter.highlight({}, $('#content pre')[0])
     render: ->
       rendered = this.template(this.model.toJSON())
       $(this.el).html(rendered)

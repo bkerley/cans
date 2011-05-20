@@ -3,6 +3,7 @@
   %head
     %title Cans
     %link(rel='stylesheet' href='frameset.css' type='text/css' media='screen')
+    %link(rel='stylesheet' href='shCoreMidnight.css' type='text/css' media='screen')
   %body
     %ul#columns
       %li
@@ -18,6 +19,8 @@
     %script{:src=>'jquery-1.4.4.min.js', :type=>'text/javascript'}
     %script{:src=>'underscore-min.js', :type=>'text/javascript'}
     %script{:src=>'backbone-min.js', :type=>'text/javascript'}
+    %script{:src=>'shCore.js', :type=>'text/javascript'}
+    %script{:src=>'shBrushRuby.js', :type=>'text/javascript'}
     %script{:src=>'application.js', :type=>'text/javascript'}
     %script#module_template(type='text/template')
       <%= name %>
@@ -25,5 +28,5 @@
       <%= name %>
     %script#source_template(type='text/template')
       %h1 <%= module.name %><%= flavorSymbol %><%= name %>
-      %pre <%= source %>
+      %pre{:class=>'brush: ruby'} <%= source %>
    
