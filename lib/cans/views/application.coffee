@@ -43,11 +43,13 @@ jQuery ->
   class window.Method
     constructor: (@module, @name) ->
     load: (flavor) ->
-      Ajax "/method/#{@module.name}/.#{@flavor}/#{@name}", (data) =>
+      Ajax this.url(), (data) =>
         this.consume data
     consume: (returned) ->
       @source = returned.source
       this.view.trigger 'loaded'
+    url: ->
+      "/method/#{escape(@module.name)}/.#{escape(@flavor)}/#{escape(@name)}"
     toJSON: ->
       module: @module.toJSON()
       name: @name
