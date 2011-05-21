@@ -2,9 +2,6 @@
 
 Interactive online source browser for Rack applications.
 
-Experimental and unfinished. This gem will probably kill
-you in your sleep if you try to use it right now.
-
 == Using in Rails 3
 
 Add "cans" to your Gemfile:
@@ -37,4 +34,4 @@ Jasmine tests for the fancy browser are in the "spec/javascripts" directory.  Ru
 
 == Copyright
 
-Copyright (c) 2010 Bryce Kerley. See LICENSE for details.
+Copyright (c) 2010-2011 Bryce Kerley. See LICENSE for details.
