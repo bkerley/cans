@@ -23,10 +23,16 @@
     %script{:src=>'shBrushRuby.js', :type=>'text/javascript'}
     %script{:src=>'application.js', :type=>'text/javascript'}
     %script#module_template(type='text/template')
-      <%= name %>
+      <a><%= name %></a>
+      <ul class="child_modules"></ul>
     %script#method_template(type='text/template')
-      <%= name %>
+      <a><%= name %></a>
     %script#source_template(type='text/template')
       %h1 <%= module.name %><%= flavorSymbol %><%= name %>
+      %p.location Found at <%= file %>:<%= line %>
       %pre{:class=>'brush: ruby'} <%= source %>
-   
+    %script#source_error_template(type='text/template')
+      %h1 <%= module.name %><%= flavorSymbol %><%= name %>
+      %p
+        Couldn't find source for this method. It's probably implemented in C,
+        an accessor method, or dynamically generated.

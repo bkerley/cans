@@ -47,6 +47,9 @@ jQuery ->
         this.consume data
     consume: (returned) ->
       @source = returned.source
+      if @source
+        @source_file = returned.source_location[0]
+        @source_line = returned.source_location[1]
       this.view.trigger 'loaded'
     url: ->
       "/method/#{escape(@module.name)}/.#{escape(@flavor)}/#{escape(@name)}"
@@ -54,6 +57,8 @@ jQuery ->
       module: @module.toJSON()
       name: @name
       source: @source
+      file: @source_file
+      line: @source_line
       flavor: @flavor
       flavorSymbol: @flavorSymbol
 
@@ -68,8 +73,18 @@ jQuery ->
   window.SourceView = Backbone.View.extend
     tagName: 'div'
     template: _.template($('#source_template').html())
+    errorTemplate: _.template($('#source_error_template').html())
     render: ->
+      if @model.source
+        return this.renderOkay()
+      else
+        return this.renderError()
+    renderOkay: ->
       rendered = @template(@model.toJSON())
+      $(@el).html(rendered)
+      return this
+    renderError: ->
+      rendered = @errorTemplate(@model.toJSON())
       $(@el).html(rendered)
       return this
 
@@ -84,6 +99,7 @@ jQuery ->
     loadSource: ->
       $('#content').html('')
       @model.load()
+      false
     drawSource: ->
       sourceView = new SourceView({model: @model})
       $('#content').html(sourceView.render().el)
@@ -91,28 +107,43 @@ jQuery ->
     render: ->
       rendered = this.template(this.model.toJSON())
       $(this.el).html(rendered)
+      $(this.el).addClass(this.model.flavor)
       return this
 
   window.ModuleView = Backbone.View.extend
     tagName: 'li'
     template: _.template($('#module_template').html())
     events:
-      'click': 'loadMethods'
+      'click': 'loadChildren'
     initialize: ->
       @model.view = this
-      this.bind 'loaded', this.drawMethods
-    loadMethods: ->
+      this.bind 'loaded', this.drawChildren
+    loadChildren: ->
       $('#class_method_list').html('')
       $('#instance_method_list').html('')
       $('#content').html('')
+      $(@el).children('.child_modules').html('')
       @model.load()
-    drawMethods: ->
+      false
+    drawChildren: ->
+      this.drawChildModules()
+      this.drawClassMethods()
+      this.drawInstanceMethods()
+    drawClassMethods: ->
       _(this.model.classMethods).each (m) ->
         view = new MethodView({model: m})
         $('#class_method_list').append(view.render().el)
+    drawInstanceMethods: ->
       _(this.model.localInstanceMethods).each (m) ->
         view = new MethodView({model: m})
         $('#instance_method_list').append(view.render().el)
+      _(this.model.inheritedInstanceMethods).each (m) ->
+        view = new MethodView({model: m})
+        $('#instance_method_list').append(view.render().el)
+    drawChildModules: ->
+      _(this.model.childModules).each (m) =>
+        view = new ModuleView({model: m})
+        $(@el).children('.child_modules').append(view.render().el)
     render: ->
       rendered = this.template(this.model.toJSON())
       $(this.el).html(rendered)

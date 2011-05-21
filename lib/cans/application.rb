@@ -47,7 +47,10 @@ module Cans
       @module = @address.target_module
       @method = @address.target_method
 
-      to_json({ :source=>@method.source_with_doc })
+      @source = @method.source_with_doc
+      @location = @method.source_location
+
+      to_json({ :source=>@source, :source_location=>@location })
     end
 
     get '/module/*' do
