@@ -32,6 +32,7 @@ end
 task :test
 
 task :default => :test
+task :test => :coffeescript
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|

@@ -1,4 +1,4 @@
-%w{ method_extensions sinatra/base haml coffee-script json }.each do |g|
+%w{ method_extensions sinatra/base haml json }.each do |g|
   require g
 end
 
