@@ -29,6 +29,7 @@ Unit tests are in the "test/unit" directory, using "shoulda" from ThoughtBot.  R
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
+* When I accept, you will get some [Razor Sharp Can Lids](https://picomoney.com/razor-sharp-can-lids) as a token of appreciation.
 
 == Copyright
 
