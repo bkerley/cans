@@ -2,6 +2,8 @@
 
 Interactive online source browser for Rack applications.
 
+http://dl.dropbox.com/u/9802610/Screenshots/g.png
+
 == Using in Rails 3
 
 Add "cans" to your Gemfile:
